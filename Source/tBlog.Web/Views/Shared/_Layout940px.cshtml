@@ -1,0 +1,16 @@
+﻿@model tBlog.Web.Models.BaseViewModel
+@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section scripts
+{
+    @RenderSection("scripts", false)
+}
+
+@section styles
+{
+    @RenderSection("styles", false)
+}
+
+<div class="span12">@RenderBody()</div>
+

@@ -1,0 +1,5 @@
+﻿@model tBlog.Web.Models.CategoryViewModel
+           
+<div class="alert alert-info">
+    <strong>@Html.ActionLink(String.Format("{0}({1})", Model.Name, Model.EntryCount), "Category", "Blog", new { category = Model.Name, page = 1 }, null)</strong>
+</div>

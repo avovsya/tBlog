@@ -1,0 +1,27 @@
+﻿@model tBlog.Web.Models.EntryViewModel
+<hr />
+<section class="details">
+        <span> @Model.CreatedAt </span>
+        @if (Model.Category != null)
+        {
+            <text>
+                |
+                <span> <strong>Category: </strong>    @Html.RouteLink(@Model.Category, "Category", new { category = Model.Category, page = 1 }, null) </span>
+            </text>
+        }
+        @if (Model.Tags.Any())
+        {
+            <text>
+                |
+                <span class="tags">
+                    <strong>Tags: </strong>
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <span >
+                            @Html.RouteLink(tag, "Tag", new { tag, page = 1 }, null)
+                        </span>
+                    }
+                </span>
+            </text>
+        }  
+</section>

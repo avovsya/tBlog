@@ -1,0 +1,8 @@
+
+Deploy/
+Source/_ReSharper.tBlog.Web/
+[Bb]in/
+[Oo]bj/
+Docs/
+Source/packages/
+*.suo

@@ -1,0 +1,6 @@
+﻿@model tBlog.Web.Models.TagViewModel
+           
+<div class="alert alert-info">
+    <strong>@Html.ActionLink(String.Format("{0}({1})", Model.Name, Model.EntryCount), "Tag", "Blog", new { tag = Model.Name, page = 1 }, null)</strong>
+</div>
+

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<tBlog.Web.Models.CategoryViewModel>
+
+<div class="widget">
+    @Html.RouteLink("Categories", "Categories", null, new { @class = "header categories" })
+    <ul id="categories" class="unstyled">
+        @foreach(var category in Model)
+        {
+            <li class="categorie">@Html.ActionLink(category.Name, "Category", "Blog", new { category = category.Name, page = 1 }, null)</li>   
+        }
+    </ul>
+</div>

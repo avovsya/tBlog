@@ -1,0 +1,7 @@
+﻿@model tBlog.Web.Models.EntryViewModel
+           
+<blockquote>
+    <a href="@Url.RouteUrl("Entry", new { slug = Model.Slug })">
+        @Model.Title
+    </a>
+</blockquote>

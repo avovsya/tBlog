@@ -1,0 +1,15 @@
+﻿@using tBlog.Web.Application.Services
+@model tBlog.Web.Models.EntryViewModel
+<article class="entrie">
+    <a href="@Url.RouteUrl("Entry", new { slug = Model.Slug })">
+        <h2>
+            @Model.Title
+            <a class="close remove" style="display: none;" data-alert="Do you really want to remove this entrie?" data-url="@Url.Action("RemoveEntry", "Admin", new { id = Model.Id })" data-action="reload">&times;</a>
+        </h2>
+    </a>
+    <p>
+        @Html.Raw(Model.Body.CutEntry())
+    </p>
+    
+    @Html.Partial("DisplayTemplates/EntryDetails", Model)
+</article>

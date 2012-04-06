@@ -1,0 +1,29 @@
+﻿@model tBlog.Domain.Entities.Comment
+
+@using (Ajax.BeginForm("Create", "Comment", null,new AjaxOptions{UpdateTargetId = "comments", InsertionMode = InsertionMode.InsertBefore, HttpMethod = "POST"}, new{@class="well"})) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Add comment</legend>
+        <br/>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Author)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Author)
+            @Html.ValidationMessageFor(model => model.Author)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Body)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Body)
+            @Html.ValidationMessageFor(model => model.Body)
+        </div>        
+
+        @Html.HiddenFor(model => model.EntryId)
+        <p>
+            <input type="submit" value="Add"  class="btn btn-primary"/>
+        </p>
+    </fieldset>
+}

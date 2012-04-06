@@ -1,0 +1,49 @@
+﻿@using tBlog.Web.Application.Services
+@model tBlog.Web.Models.ArchiveModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $('#yearAccordion').collapse();
+            $('#monthAccordion').collapse();
+        });
+    </script>
+}
+
+<section id="archive">
+    <div class="accordion" id="yearAccordion">
+        @foreach (var item in Model.Items)
+        {
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a href="#collapse@(item.Year)" class="accordion-toggle" data-toggle="collapse" data-parent="#yearAccordion">@(item.Year)(@item.MonthArchiveEntries.Sum(m => m.Entries.Count()))</a>
+                </div>
+                <div id="collapse@(item.Year)" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        @foreach(var month in item.MonthArchiveEntries)
+                        {
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a href="#collapseMonth@(month.Month)" class="accordion-toggle" data-toggle="collapse" data-parent="#"> @(new DateTime(item.Year, month.Month, 1).ToString("MMMM"))(@month.Entries.Count())</a>
+                                    </div>
+                                    <div id="collapseMonth@(month.Month)" class="accordion-body collapse in">
+                                        <div class="accordion-inner">
+                                            @foreach(var entry in month.Entries)
+                                            {
+                                                @Html.Partial("DisplayTemplates/EntryArchiveItem", entry.ToViewModel())
+                                            }
+                                        </div>
+                                    </div>
+                                </div>    
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

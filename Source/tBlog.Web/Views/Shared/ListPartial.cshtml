@@ -1,0 +1,29 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model tBlog.Web.Models.ListViewModel
+@{
+    Layout = null;
+    if (Model.RouteValues == null)
+    {
+        Model.RouteValues = new RouteValueDictionary();
+    }
+}
+<section id="@Model.SectionId">
+    @foreach (var item in Model.Items)
+    {
+        @Html.Partial(Model.TemplateName, item)
+    }
+    @if (Model.Items.Count > 0)
+    {
+        @Html.PagedListPager((IPagedList) Model.Items, page =>
+                                                                 {
+                                                                     Model.RouteValues["page"] = page;
+                                                                     return Url.Action(Model.ActionName, Model.ControllerName, Model.RouteValues);
+                                                                 }, new PagedListRenderOptions
+                                                                        {
+                                                                            DisplayLinkToIndividualPages = false,
+                                                                            DisplayPageCountAndCurrentLocation = false,
+                                                                            ContainerDivClasses = new List<string> {"pager"}
+                                                                        })
+    }
+</section>

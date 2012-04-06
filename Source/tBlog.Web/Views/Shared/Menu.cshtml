@@ -1,0 +1,46 @@
+﻿@model tBlog.Web.Models.BaseViewModel
+<div class="navbar">
+  <div class="navbar-inner">
+      <div class="container">
+          <ul class="nav">
+              @foreach(var item in Model.MenuModel.Where(m => !m.PullRight))
+              {
+                  var classText = "";
+                  
+                  if (item.IsActive)
+                  {
+                      classText += " active";
+                  }
+                  
+                  <li class="@classText"><a href="@item.Url">@item.Title</a></li>
+                  
+              }
+          </ul>
+          
+          @using (Html.BeginForm("Search", "Blog", null, FormMethod.Get, new { @class = "navbar-search" }))
+          {
+            @Html.TextBox("term", null, new { @class = "input-medium search-query ", placeholder = "Search" })
+            <button type="submit" class="button-search"><i class="icon-search icon-white"></i></button>
+          }
+          
+          <ul class="nav pull-right">
+              
+              @Html.Partial("_LogOnPartial")
+              @foreach (var item in Model.MenuModel.Where(m => m.PullRight))
+              {
+                  var classText = "";
+
+                  if (item.IsActive)
+                  {
+                      classText += " active";
+                  }
+                  <li class="divider-vertical"></li>
+                  <li class="@classText"><a href="@item.Url">@item.Title</a></li>
+                  
+              }
+          </ul>
+      </div>
+  </div>
+</div>
+@*    </ul>
+</div>*@

@@ -1,0 +1,29 @@
+﻿@model tBlog.Web.Models.BaseViewModel
+@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section scripts
+{
+    @RenderSection("scripts", false)
+    <script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.masonry.js")" type="text/javascript"></script>
+    <script>
+        $(function() {
+            $('#tags').masonry({
+                itemSelector: '.tag',
+                columnWidth: 5
+            });
+        });
+    </script>
+}
+
+@section styles
+{
+    @RenderSection("styles", false)
+}
+
+<div class="span9">@RenderBody()</div>
+<aside class="span3">
+    @Html.Action("TagWidget", "Widget")
+    @Html.Action("CategoryWidget", "Widget")
+</aside>

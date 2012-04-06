@@ -1,0 +1,10 @@
+﻿@model tBlog.Domain.Entities.Comment
+           
+<blockquote>
+    <a class="close remove" style="display: none;" data-alert="Do you really want to remove this comment?" data-url="@Url.Action("RemoveComment", "Admin", new { id = Model.Id })" data-action="remove">&times;</a>
+    <p>
+        @Model.Body
+    </p>
+    <small><strong>@Model.Author</strong> - @Model.CreatedAt.ToString("hh:mm:ss - dd MMM yyyy")</small>
+</blockquote>
+

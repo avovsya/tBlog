@@ -1,0 +1,11 @@
+﻿@model IEnumerable<tBlog.Web.Models.TagViewModel>
+
+<div class="widget tags">
+    @Html.RouteLink("Tags", "Tags", null,new{ @class = "header"})
+    <ul id="tags" class="unstyled">
+        @foreach(var tag in Model)
+        {
+            <li class="tag" style="font-size: @(tag.Rank)px; font-weight: bold;">@Html.ActionLink(tag.Name, "Tag", "Blog", new { tag = tag.Name, page = 1 }, null)</li>   
+        }
+    </ul>
+</div>

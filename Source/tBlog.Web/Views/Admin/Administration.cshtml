@@ -1,0 +1,114 @@
+﻿@model tBlog.Web.Models.Admin.SettingsEditModel
+@{
+    ViewBag.Title = "Administration";
+    Layout = "~/Views/Shared/_Layout940px.cshtml";
+}
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ckeditor/ckeditor.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ckeditor/adapters/jquery.js")"></script>
+    <script>
+        $(function () {
+            var editorConfig = {
+                toolbar: 'Basic'
+            };
+            $('textarea#AboutPageText').ckeditor(editorConfig);
+        });
+    </script>
+}
+
+@section styles
+{
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+    <style>
+        input, textarea {
+            width: 98%;
+        }
+        
+        textarea {
+            height: 200px;
+        }
+        
+    </style>
+}
+
+<h2>
+    Administration</h2>
+@if (!String.IsNullOrEmpty(Model.OperationResult))
+{
+    <div class="alert">
+        @Model.OperationResult
+    </div>
+}
+<br />
+<div class="row">
+    <section class="span9">
+        <h3>Settings</h3>
+        <br/>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ListPageSize)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ListPageSize)
+                    @Html.ValidationMessageFor(model => model.ListPageSize)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CommentListPageSize)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.CommentListPageSize)
+                    @Html.ValidationMessageFor(model => model.CommentListPageSize)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BlogName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BlogName)
+                    @Html.ValidationMessageFor(model => model.BlogName)
+                </div>
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MetaKeywords)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MetaKeywords)
+                    @Html.ValidationMessageFor(model => model.MetaKeywords)
+                </div>
+                
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MetaDescription)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MetaDescription)
+                    @Html.ValidationMessageFor(model => model.MetaDescription)
+                </div>                
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AboutPageText)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.AboutPageText)
+                    @Html.ValidationMessageFor(model => model.AboutPageText)
+                </div>
+
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </fieldset>
+        }
+    </section>
+    <section class="span3">
+        <h3>Actions</h3>
+        <br/>
+        <ul class="nav nav-tabs nav-stacked">
+            <li><a href="@Url.Action("CreateEntry", "Admin")">Create entry</a></li>
+        </ul>
+    </section>
+</div>
